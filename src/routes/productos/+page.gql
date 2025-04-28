@@ -1,0 +1,35 @@
+query Categories {
+  categories(sort: "id:asc") {
+    data {
+      id
+      attributes {
+        name
+        image {
+          data {
+            attributes {
+              name
+              url
+              formats
+            }
+          }
+        }
+        subcategorias {
+          data {
+            attributes {
+              name
+              image {
+                data {
+                  attributes {
+                    name
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

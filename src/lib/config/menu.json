@@ -1,0 +1,24 @@
+{
+  "main": [
+    {
+      "name": "Inicio",
+      "url": "/"
+    },
+    {
+      "name": "Nosotros",
+      "url": "/nosotros"
+    },
+    {
+      "name": "Productos",
+      "url": "/productos"
+    },
+    {
+      "name": "Coaches",
+      "url": "/coaches"
+    },
+    {
+      "name": "Contacto",
+      "url": "/contacto"
+    }
+  ]
+}
