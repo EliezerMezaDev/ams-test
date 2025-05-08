@@ -1,6 +1,6 @@
 [build]
   command = "yarn build"
-  publish = "build"
+  publish = ".svelte-kit/netlify"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -8,4 +8,9 @@
   NPM_FLAGS = "--legacy-peer-deps"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs" 
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
