@@ -17,6 +17,9 @@ importers:
       '@unocss/reset':
         specifier: ^0.58.3
         version: 0.58.9
+      ansi-styles:
+        specifier: ^6.2.1
+        version: 6.2.1
       motion:
         specifier: ^10.17.0
         version: 10.18.0
