@@ -6,6 +6,7 @@
   NODE_VERSION = "18"
   YARN_VERSION = "1.22.19"
   NPM_FLAGS = "--legacy-peer-deps"
+  YARN_FLAGS = "--frozen-lockfile --prefer-offline"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -13,4 +14,21 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200 
+  status = 200
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true 
