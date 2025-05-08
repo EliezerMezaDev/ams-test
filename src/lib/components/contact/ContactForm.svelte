@@ -2,11 +2,29 @@
 	import inView from '$lib/actions/inView';
 	import { isDesktop } from '$lib/store';
 	import { animate, stagger, timeline } from 'motion';
+	import { browser } from '$app/environment';
 
 	let sending = false;
 	let error = '';
 	let success = '';
 	const EMAIL_TARGET = 'lsandoval@novanet.studio';
+
+	function isMobileDevice() {
+		if (!browser) return false;
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		);
+	}
+
+	function getEmailLink() {
+		const subject = encodeURIComponent('CONTACTO DESDE FORMULARIO - AVILA MULTISPORT');
+
+		if (isMobileDevice()) {
+			return `mailto:${EMAIL_TARGET}?subject=${subject}`;
+		}
+
+		return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}`;
+	}
 
 	function sendForm(_event: Event) {
 		_event.preventDefault();
@@ -97,6 +115,14 @@
 						x: [-10, 0]
 					},
 					{ duration: 0.5, delay: 0.1 }
+				],
+				[
+					'#contact-email',
+					{
+						opacity: [0, 1],
+						x: [-10, 0]
+					},
+					{ duration: 0.5, delay: 0.2 }
 				]
 			],
 			{
@@ -144,5 +170,16 @@
 				{sending ? 'Enviando...' : 'Enviar'}
 			</button>
 		</form>
+		<p id="contact-email" class="mt-4 text-white">
+			O contáctanos directamente
+			<a
+				href={getEmailLink()}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-#E3D268 hover:underline"
+			>
+				{EMAIL_TARGET}
+			</a>
+		</p>
 	</div>
 </section>

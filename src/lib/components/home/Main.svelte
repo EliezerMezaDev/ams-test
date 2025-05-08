@@ -64,7 +64,7 @@
 			enabled: false,
 			nextEl: '.main-next-btn',
 			prevEl: '.main-prev-btn',
-			disabledClass: 'opacity-50'
+			disabledClass: 'opacity-90'
 		}}
 		pagination={{}}
 		breakpoints={{

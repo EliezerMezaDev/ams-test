@@ -149,7 +149,7 @@
 						).path}"
 					/>
 					<div
-						class="absolute flex justify-center -top-48% left-0 right-0 md:-top-180px lg:-top-8.5rem"
+						class="absolute flex justify-center left-0 right-0 -top-100px md:-top-180px lg:-top-8.5rem"
 					>
 						<img
 							class="max-w-128px md:max-w-14rem lg:max-w-12rem"
@@ -163,7 +163,7 @@
 							target="_blank"
 							class="flex items-center gap-2 text-2xl text-#55555A hover:text-#47474d"
 						>
-							<h4 class=" text-center font-bold mt-4 md:text-3xl">
+							<h4 class=" text-center font-bold mt-4 text-xl md:text-3xl">
 								{coach.name}
 							</h4>
 							<div class="i-fa6-brands-instagram mt-4"></div>
