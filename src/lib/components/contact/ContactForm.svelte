@@ -9,8 +9,101 @@
 	let success = '';
 	const EMAIL_TARGET = 'lsandoval@novanet.studio';
 
+	let nameError = '';
+	let lastnameError = '';
+	let emailError = '';
+	let phoneError = '';
+	let messageError = '';
+
+	const NAME_REGEX = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
+	const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	const PHONE_REGEX = /^\+?[0-9]{8,15}$/;
+	const MESSAGE_REGEX = /^[a-zA-ZÀ-ÿ0-9\s@\-+.,!?()]{0,256}$/;
+
+	function validateName(value: string): boolean {
+		if (!value) {
+			nameError = 'El nombre es requerido';
+			return false;
+		}
+		if (!NAME_REGEX.test(value)) {
+			nameError = 'El nombre solo debe contener letras y espacios (2-50 caracteres)';
+			return false;
+		}
+		nameError = '';
+		return true;
+	}
+
+	function validateLastname(value: string): boolean {
+		if (!value) {
+			lastnameError = 'El apellido es requerido';
+			return false;
+		}
+		if (!NAME_REGEX.test(value)) {
+			lastnameError = 'El apellido solo debe contener letras y espacios (2-50 caracteres)';
+			return false;
+		}
+		lastnameError = '';
+		return true;
+	}
+
+	function validateEmail(value: string): boolean {
+		if (!value) {
+			emailError = 'El email es requerido';
+			return false;
+		}
+		if (!EMAIL_REGEX.test(value)) {
+			emailError = 'Ingrese un email válido';
+			return false;
+		}
+		emailError = '';
+		return true;
+	}
+
+	function validatePhone(value: string): boolean {
+		if (!value) {
+			phoneError = 'El teléfono es requerido';
+			return false;
+		}
+		if (!PHONE_REGEX.test(value)) {
+			phoneError = 'Ingrese un número de teléfono válido (8-15 dígitos)';
+			return false;
+		}
+		phoneError = '';
+		return true;
+	}
+
+	function validateMessage(value: string): boolean {
+		if (!value) {
+			messageError = 'El mensaje es requerido';
+			return false;
+		}
+		if (!MESSAGE_REGEX.test(value)) {
+			messageError = 'El mensaje solo puede contener caracteres regulares';
+			return false;
+		}
+		messageError = '';
+		return true;
+	}
+
+	function validateForm(formData: FormData): boolean {
+		const name = formData.get('name') as string;
+		const lastname = formData.get('lastname') as string;
+		const email = formData.get('email') as string;
+		const phone = formData.get('phone') as string;
+		const message = formData.get('message') as string;
+
+		const isNameValid = validateName(name);
+		const isLastnameValid = validateLastname(lastname);
+		const isEmailValid = validateEmail(email);
+		const isPhoneValid = validatePhone(phone);
+		const isMessageValid = validateMessage(message);
+
+		return isNameValid && isLastnameValid && isEmailValid && isPhoneValid && isMessageValid;
+	}
+
 	function isMobileDevice() {
 		if (!browser) return false;
+
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 			navigator.userAgent
 		);
@@ -32,6 +125,11 @@
 
 		try {
 			const formData = new FormData(_event.target as HTMLFormElement);
+
+			if (!validateForm(formData)) {
+				return;
+			}
+
 			const formObject = Object.fromEntries(formData);
 
 			const emailBody = `Nombre: ${formObject.name}
@@ -48,15 +146,18 @@
 			const subject = encodeURIComponent('CONTACTO DESDE FORMULARIO - AVILA MULTISPORT');
 			const body = encodeURIComponent(emailBody);
 
-			const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}&body=${body}`;
-			window.open(gmailLink, '_blank');
+			if (isMobileDevice()) {
+				const mailtoLink = `mailto:${EMAIL_TARGET}?subject=${subject}&body=${body}`;
+				window.location.href = mailtoLink;
+			} else {
+				const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}&body=${body}`;
+				window.open(gmailLink, '_blank');
+			}
 		} catch (e) {
 			error = 'Error al procesar el formulario';
 		} finally {
 			setTimeout(() => {
-				(_event.target as HTMLFormElement).reset();
-
-				console.log('Clean form');
+				//(_event.target as HTMLFormElement).reset();
 			}, 1000);
 		}
 	}
@@ -152,14 +253,73 @@
 		<form class="flex flex-col gap-4 md:(gap-4 mt-8)" name="contact-form" on:submit={sendForm}>
 			<input type="hidden" name="form-name" value="contact-form" />
 			<div class="flex flex-col gap-4 lg:(flex-row)">
-				<input required class="w-full" type="text" name="name" placeholder="Nombre" />
-				<input required class="w-full" type="text" name="phone" placeholder="Teléfono" />
+				<div class="w-full">
+					<input
+						required
+						class="w-full"
+						type="text"
+						name="name"
+						placeholder="Nombre"
+						on:input={(e) => validateName(e.currentTarget.value)}
+					/>
+					{#if nameError}
+						<p class="text-red-500 text-sm mt-1">{nameError}</p>
+					{/if}
+				</div>
+				<div class="w-full">
+					<input
+						required
+						class="w-full"
+						type="text"
+						name="lastname"
+						placeholder="Apellido"
+						on:input={(e) => validateLastname(e.currentTarget.value)}
+					/>
+					{#if lastnameError}
+						<p class="text-red-500 text-sm mt-1">{lastnameError}</p>
+					{/if}
+				</div>
 			</div>
 			<div class="flex flex-col gap-4 lg:(flex-row)">
-				<input required class="w-full" type="text" name="lastname" placeholder="Apellido" />
-				<input required class="w-full" type="email" name="email" placeholder="Email" />
+				<div class="w-full">
+					<input
+						class="w-full"
+						type="email"
+						name="email"
+						placeholder="Email"
+						on:input={(e) => validateEmail(e.currentTarget.value)}
+					/>
+					{#if emailError}
+						<p class="text-red-500 text-sm mt-1">{emailError}</p>
+					{/if}
+				</div>
+				<div class="w-full">
+					<input
+						required
+						class="w-full"
+						type="tel"
+						name="phone"
+						placeholder="Teléfono"
+						on:input={(e) => validatePhone(e.currentTarget.value)}
+					/>
+					{#if phoneError}
+						<p class="text-red-500 text-sm mt-1">{phoneError}</p>
+					{/if}
+				</div>
 			</div>
-			<textarea required class="pt-3 pl-3" name="message" rows="4" placeholder="Mensaje"></textarea>
+			<div class="w-full">
+				<textarea
+					required
+					class="w-full pt-3 pl-3"
+					name="message"
+					rows="4"
+					placeholder="Mensaje"
+					on:input={(e) => validateMessage(e.currentTarget.value)}
+				></textarea>
+				{#if messageError}
+					<p class="text-red-500 text-sm mt-1">{messageError}</p>
+				{/if}
+			</div>
 			{#if error}
 				<p class="text-red-500">{error}</p>
 			{/if}

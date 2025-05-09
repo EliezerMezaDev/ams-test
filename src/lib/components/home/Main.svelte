@@ -114,7 +114,7 @@
 
 <style>
 	swiper-container::part(pagination) {
-		--swiper-pagination-bottom: 5rem;
+		--swiper-pagination-bottom: 15vh;
 		--swiper-pagination-color: #fff;
 	}
 </style>
