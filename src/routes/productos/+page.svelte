@@ -86,10 +86,13 @@
 	});
 </script>
 
-<section id="productCategories" class="h-screen bg-#003B49 flex flex-col items-center pt-28 p-8">
+<section
+	id="productCategories"
+	class="h-screen max-h-screen bg-#003B49 flex flex-col items-center pt-28 p-8 overflow-y-auto"
+>
 	<h3 class="text-2xl text-#E3D268 md:text-3xl">Productos</h3>
 	<ul
-		class="px-6 flex flex-col gap-8 mt-8 lg:(flex-row mt-24 gap-10)"
+		class="px-6 mt-8 pb-20 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:(grid-cols-3)"
 		use:clickOutside
 		on:clickoutside={() => (active = '')}
 	>
@@ -98,34 +101,34 @@
 				<button
 					on:click|preventDefault={() => handleActive(category?.attributes?.name?.toLowerCase())}
 				>
-					<li
-						id={category?.attributes?.name?.toLowerCase()}
-						class="relative md:(max-w-80% mx-auto) lg:max-w-full"
-					>
-						{#if active === category?.attributes?.name?.toLowerCase()}
+					<li id={category?.attributes?.name?.toLowerCase()} class="relative max-w-full">
+						<div
+							id="top"
+							class={`absolute top-0 left-0 w-full h-6 transition ease [clip-path:polygon(0%_0%,_100%_0%,_19.74%_81.25%)] ${
+								active === category?.attributes?.name?.toLowerCase()
+									? ' bg-#93B7BB'
+									: 'bg-#93B7BB/75 md:bg-#93B7BB/50'
+							}`}
+							in:topAnimation
+						/>
+						<div
+							id="middle"
+							class={`absolute bottom-0 left-0 w-full h-8 md:h-12 flex justify-center items-center gap-2 [clip-path:polygon(60%_0,_94%_23%,_100%_100%,_0_100%,_8%_8%)] transition ease z-10 ${
+								active === category?.attributes?.name?.toLowerCase()
+									? ' bg-#93B7BB'
+									: 'bg-#93B7BB/75 md:bg-#93B7BB/50'
+							}`}
+							in:middleAnimation
+						>
+							<h4 id="name" class="text-#003B49 font-bold text-xl sm:text-2xl lg:text-3xl">
+								{category?.attributes?.name}
+							</h4>
 							<div
-								id="top"
-								class="absolute top-0 left-0 w-full h-12 [clip-path:polygon(0%_0%,_100%_0%,_19.74%_81.25%)] bg-#93B7BB transition ease"
-								in:topAnimation
-							/>
-							<div
-								id="middle"
-								class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-#93B7BB/50 gap-2 transition ease"
-								in:middleAnimation
-							>
-								<h4 id="name" class="text-#003B49 font-bold text-5xl">
-									{category?.attributes?.name}
-								</h4>
-								<div
-									class="i-ph-arrow-right-bold text-4xl text-#003B49"
-									transition:fly={{ x: -10, delay: 0.5 }}
-								></div>
-							</div>
-							<div
-								id="bottom"
-								class="absolute bottom-0 left-0 w-full h-12 [clip-path:polygon(76.92%_24.99%,_101.28%_100%,_0%_103%)] bg-#93B7BB transition ease"
-							/>
-						{/if}
+								class="i-ph-arrow-right-bold text-xl md:text-2xl text-#003B49"
+								transition:fly={{ x: -10, delay: 0.5 }}
+							></div>
+						</div>
+
 						<img
 							id="image"
 							src={getImageUrl(category?.attributes?.image?.data?.attributes?.url)}

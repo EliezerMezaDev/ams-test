@@ -118,27 +118,33 @@
 		/>
 	</div>
 	<ul
-		class="px-12 pt-18 flex flex-col gap-8 -mt-10 min-h-full bg-#fff w-full min-h-screen lg:(flex-row min-h-full items-start justify-center -mt-20 pt-28)"
+		class="px-12 pt-18 pb-20 md:pb-30 gap-8 -mt-10 min-h-full bg-#fff w-full"
 		use:clickOutside
 		on:clickoutside={() => (active = '')}
 	>
-		{#if $Subcategories.fetching}
-			<p>Cargando...</p>
-		{:else}
-			{#each $Subcategories?.data?.subcategories?.data as subcategory (subcategory?.attributes.name)}
-				<button
-					class="last:mb-36 md:mx-auto lg:(last:mb-0 mx-0)"
-					on:click|preventDefault={() => handleActive(subcategory?.attributes.name?.toLowerCase())}
-				>
-					<li class="relative">
-						<img
-							class="lg:max-w-360px"
-							src={getImageUrl(subcategory?.attributes?.image?.data?.attributes?.url)}
-							alt={subcategory?.attributes.name}
-						/>
-						{#if active === subcategory?.attributes.name?.toLowerCase()}
+		<div class="max-w-screen-xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 lg:(grid-cols-3)">
+			{#if $Subcategories.fetching}
+				<p>Cargando...</p>
+			{:else}
+				{#each $Subcategories?.data?.subcategories?.data as subcategory (subcategory?.attributes.name)}
+					<button
+						class="flex justify-center"
+						on:click|preventDefault={() =>
+							handleActive(subcategory?.attributes.name?.toLowerCase())}
+					>
+						<li class="relative max-w-360px">
+							<img
+								class="w-full"
+								src={getImageUrl(subcategory?.attributes?.image?.data?.attributes?.url)}
+								alt={subcategory?.attributes.name}
+							/>
+
 							<div
-								class="absolute top-0 left-0 w-full h-full bg-#003B49/70 flex justify-center items-center backdrop-blur-2px"
+								class={`absolute bottom-0 left-0 w-full flex justify-center items-center backdrop-blur-2px [clip-path:polygon(3%_7%,_93%_0,_100%_50%,_100%_100%,_5%_98%,_0%_50%)] transition ease ${
+									active === subcategory?.attributes?.name?.toLowerCase()
+										? 'bg-#003B49'
+										: 'bg-#003B49/70'
+								}`}
 								transition:blur
 							>
 								<h5 class="font-bold text-xl text-white first-letter:uppercase">
@@ -149,10 +155,10 @@
 									transition:fly={{ x: 10, delay: 300 }}
 								></div>
 							</div>
-						{/if}
-					</li>
-				</button>
-			{/each}
-		{/if}
+						</li>
+					</button>
+				{/each}
+			{/if}
+		</div>
 	</ul>
 </section>
