@@ -1,0 +1,17 @@
+<!-- static/contact-form-netlify.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Netlify Form Handler</title></head>
+<body>
+    <form name="contact-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you/">
+        <input type="hidden" name="form-name" value="contact-form" />
+        <p style="display:none;"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
+        <input type="text" name="name" />
+        <input type="text" name="lastname" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <textarea name="message"></textarea>
+        <!-- No necesitas el botón de submit aquí para la detección -->
+    </form>
+</body>
+</html>

@@ -1,0 +1,460 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_shared-server.js"
+    ]
+  },
+  "_client.js": {
+    "file": "chunks/client.js",
+    "name": "client",
+    "imports": [
+      "_exports.js",
+      "_ssr2.js"
+    ]
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index"
+  },
+  "_index2.js": {
+    "file": "chunks/index2.js",
+    "name": "index",
+    "imports": [
+      "_utils.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_ssr.js",
+      "_ssr2.js",
+      "_shared-server.js"
+    ]
+  },
+  "_query.js": {
+    "file": "chunks/query.js",
+    "name": "query",
+    "imports": [
+      "_utils.js",
+      "_index.js",
+      "_session.js"
+    ],
+    "dynamicImports": [
+      "src/client.ts"
+    ]
+  },
+  "_session.js": {
+    "file": "chunks/session.js",
+    "name": "session",
+    "imports": [
+      "_utils.js",
+      "_index.js"
+    ]
+  },
+  "_shared-server.js": {
+    "file": "chunks/shared-server.js",
+    "name": "shared-server"
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js",
+    "name": "ssr",
+    "imports": [
+      "_utils.js"
+    ]
+  },
+  "_ssr2.js": {
+    "file": "chunks/ssr2.js",
+    "name": "ssr"
+  },
+  "_store.js": {
+    "file": "chunks/store.js",
+    "name": "store",
+    "imports": [
+      "_index2.js"
+    ]
+  },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "name": "stores",
+    "imports": [
+      "_ssr.js",
+      "_client.js"
+    ]
+  },
+  "_utils.js": {
+    "file": "chunks/utils.js",
+    "name": "utils"
+  },
+  "_utils2.js": {
+    "file": "chunks/utils2.js",
+    "name": "utils",
+    "imports": [
+      "_shared-server.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.20.8_@svelt_aa7bcfb4d4efd8a5dd3e8039c08991ac/node_modules/@sveltejs/kit/src/runtime/components/svelte-4/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.20.8_@svelt_aa7bcfb4d4efd8a5dd3e8039c08991ac/node_modules/@sveltejs/kit/src/runtime/components/svelte-4/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_stores.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.20.8_@svelt_aa7bcfb4d4efd8a5dd3e8039c08991ac/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.20.8_@svelt_aa7bcfb4d4efd8a5dd3e8039c08991ac/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_index.js",
+      "_exports.js",
+      "_index2.js",
+      "_shared-server.js"
+    ]
+  },
+  "src/client.ts": {
+    "file": "chunks/client2.js",
+    "name": "client",
+    "src": "src/client.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_query.js",
+      "_index.js"
+    ]
+  },
+  "src/content/about.md": {
+    "file": "chunks/about.js",
+    "name": "about",
+    "src": "src/content/about.md",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/content/coaches.md": {
+    "file": "chunks/coaches.js",
+    "name": "coaches",
+    "src": "src/content/coaches.md",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/content/home.md": {
+    "file": "chunks/home.js",
+    "name": "home",
+    "src": "src/content/home.md",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/content/products.md": {
+    "file": "chunks/products.js",
+    "name": "products",
+    "src": "src/content/products.md",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "src/lib/assets/accesories/avila-multisports-accesorios-ciclistas-vestidos-safetti.webp": {
+    "file": "_app/immutable/assets/avila-multisports-accesorios-ciclistas-vestidos-safetti.BBYOP7kR.webp",
+    "src": "src/lib/assets/accesories/avila-multisports-accesorios-ciclistas-vestidos-safetti.webp"
+  },
+  "src/lib/assets/accesories/avila-multisports-accesorios-nadador-sumergido-piscina.webp": {
+    "file": "_app/immutable/assets/avila-multisports-accesorios-nadador-sumergido-piscina.33xtOrFw.webp",
+    "src": "src/lib/assets/accesories/avila-multisports-accesorios-nadador-sumergido-piscina.webp"
+  },
+  "src/lib/assets/accesories/avila-multisports-accesorios-plato-bicicleta-SRM.webp": {
+    "file": "_app/immutable/assets/avila-multisports-accesorios-plato-bicicleta-SRM.DMXgPRWx.webp",
+    "src": "src/lib/assets/accesories/avila-multisports-accesorios-plato-bicicleta-SRM.webp"
+  },
+  "src/lib/assets/brands/avila-multisports-marcas-inspire.webp": {
+    "file": "_app/immutable/assets/avila-multisports-marcas-inspire.DADblve_.webp",
+    "src": "src/lib/assets/brands/avila-multisports-marcas-inspire.webp"
+  },
+  "src/lib/assets/brands/avila-multisports-marcas-nz-manufacturing.webp": {
+    "file": "_app/immutable/assets/avila-multisports-marcas-nz-manufacturing.CBFNkgks.webp",
+    "src": "src/lib/assets/brands/avila-multisports-marcas-nz-manufacturing.webp"
+  },
+  "src/lib/assets/brands/avila-multisports-marcas-safetti.webp": {
+    "file": "_app/immutable/assets/avila-multisports-marcas-safetti.BYEBHJxP.webp",
+    "src": "src/lib/assets/brands/avila-multisports-marcas-safetti.webp"
+  },
+  "src/lib/assets/brands/avila-multisports-marcas-srm.webp": {
+    "file": "_app/immutable/assets/avila-multisports-marcas-srm.DEHOjIj0.webp",
+    "src": "src/lib/assets/brands/avila-multisports-marcas-srm.webp"
+  },
+  "src/lib/assets/brands/avila-multisports-marcas-willier.webp": {
+    "file": "_app/immutable/assets/avila-multisports-marcas-willier.By5OOKzD.webp",
+    "src": "src/lib/assets/brands/avila-multisports-marcas-willier.webp"
+  },
+  "src/lib/assets/main/avila-multisports-principal-mujer-de-espalda-multifuncional-INSPIRE.webp": {
+    "file": "_app/immutable/assets/avila-multisports-principal-mujer-de-espalda-multifuncional-INSPIRE.BYACQjwd.webp",
+    "src": "src/lib/assets/main/avila-multisports-principal-mujer-de-espalda-multifuncional-INSPIRE.webp"
+  },
+  "src/lib/assets/main/avila-multisports-principal-personas-corriendo-treadmills-TRUE.webp": {
+    "file": "_app/immutable/assets/avila-multisports-principal-personas-corriendo-treadmills-TRUE.CfgZLZLU.webp",
+    "src": "src/lib/assets/main/avila-multisports-principal-personas-corriendo-treadmills-TRUE.webp"
+  },
+  "src/lib/assets/main/avila-multisports-principal-tubo-direccion-bicicleta-WILLIER.webp": {
+    "file": "_app/immutable/assets/avila-multisports-principal-tubo-direccion-bicicleta-WILLIER.BRRauaMP.webp",
+    "src": "src/lib/assets/main/avila-multisports-principal-tubo-direccion-bicicleta-WILLIER.webp"
+  },
+  "src/lib/assets/web/avila-multisports-coaches-carolina-lairet.webp": {
+    "file": "_app/immutable/assets/avila-multisports-coaches-carolina-lairet.D4C6OImQ.webp",
+    "src": "src/lib/assets/web/avila-multisports-coaches-carolina-lairet.webp"
+  },
+  "src/lib/assets/web/avila-multisports-coaches-ciclistas-recorriendo-ruta-velocidad-banner.webp": {
+    "file": "_app/immutable/assets/avila-multisports-coaches-ciclistas-recorriendo-ruta-velocidad-banner.C23vuyub.webp",
+    "src": "src/lib/assets/web/avila-multisports-coaches-ciclistas-recorriendo-ruta-velocidad-banner.webp"
+  },
+  "src/lib/assets/web/avila-multisports-coaches-federico-pisani.webp": {
+    "file": "_app/immutable/assets/avila-multisports-coaches-federico-pisani.BNtlYtsV.webp",
+    "src": "src/lib/assets/web/avila-multisports-coaches-federico-pisani.webp"
+  },
+  "src/lib/assets/web/avila-multisports-coaches-salvatore-cali.webp": {
+    "file": "_app/immutable/assets/avila-multisports-coaches-salvatore-cali.DPD1oOo9.webp",
+    "src": "src/lib/assets/web/avila-multisports-coaches-salvatore-cali.webp"
+  },
+  "src/lib/assets/web/avila-multisports-nosotros-2-miembros-equipos-ciclismo.webp": {
+    "file": "_app/immutable/assets/avila-multisports-nosotros-2-miembros-equipos-ciclismo.5q9nqvkG.webp",
+    "src": "src/lib/assets/web/avila-multisports-nosotros-2-miembros-equipos-ciclismo.webp"
+  },
+  "src/lib/assets/web/avila-multisports-nosotros-ciclista-parado-pedaleando.webp": {
+    "file": "_app/immutable/assets/avila-multisports-nosotros-ciclista-parado-pedaleando.CZA-A2Tf.webp",
+    "src": "src/lib/assets/web/avila-multisports-nosotros-ciclista-parado-pedaleando.webp"
+  },
+  "src/lib/assets/web/avila-multisports-nosotros-grupo-ciclistas.webp": {
+    "file": "_app/immutable/assets/avila-multisports-nosotros-grupo-ciclistas.Bsbmncjz.webp",
+    "src": "src/lib/assets/web/avila-multisports-nosotros-grupo-ciclistas.webp"
+  },
+  "src/routes/+layout.js": {
+    "file": "entries/pages/_layout.js",
+    "name": "entries/pages/_layout",
+    "src": "src/routes/+layout.js",
+    "isEntry": true
+  },
+  "src/routes/+layout.server.js": {
+    "file": "entries/pages/_layout.server.js",
+    "name": "entries/pages/_layout.server",
+    "src": "src/routes/+layout.server.js",
+    "isEntry": true,
+    "imports": [
+      "_session.js"
+    ]
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_stores.js",
+      "_session.js",
+      "_index.js",
+      "_store.js",
+      "_client.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.BEN8n_di.css"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_utils.js",
+      "_store.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BmYN6oVP.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/avila-multisports-marcas-willier.By5OOKzD.webp",
+      "_app/immutable/assets/avila-multisports-marcas-inspire.DADblve_.webp",
+      "_app/immutable/assets/avila-multisports-marcas-nz-manufacturing.CBFNkgks.webp",
+      "_app/immutable/assets/avila-multisports-marcas-srm.DEHOjIj0.webp",
+      "_app/immutable/assets/avila-multisports-principal-tubo-direccion-bicicleta-WILLIER.BRRauaMP.webp",
+      "_app/immutable/assets/avila-multisports-principal-mujer-de-espalda-multifuncional-INSPIRE.BYACQjwd.webp",
+      "_app/immutable/assets/avila-multisports-principal-personas-corriendo-treadmills-TRUE.CfgZLZLU.webp",
+      "_app/immutable/assets/avila-multisports-accesorios-nadador-sumergido-piscina.33xtOrFw.webp",
+      "_app/immutable/assets/avila-multisports-accesorios-plato-bicicleta-SRM.DMXgPRWx.webp"
+    ]
+  },
+  "src/routes/+page.ts": {
+    "file": "entries/pages/_page.ts.js",
+    "name": "entries/pages/_page.ts",
+    "src": "src/routes/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/api/info/+server.ts": {
+    "file": "entries/endpoints/api/info/_server.ts.js",
+    "name": "entries/endpoints/api/info/_server.ts",
+    "src": "src/routes/api/info/+server.ts",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ],
+    "dynamicImports": [
+      "src/content/about.md",
+      "src/content/coaches.md",
+      "src/content/home.md",
+      "src/content/products.md"
+    ]
+  },
+  "src/routes/coaches/+page.svelte": {
+    "file": "entries/pages/coaches/_page.svelte.js",
+    "name": "entries/pages/coaches/_page.svelte",
+    "src": "src/routes/coaches/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_store.js"
+    ],
+    "assets": [
+      "_app/immutable/assets/avila-multisports-coaches-ciclistas-recorriendo-ruta-velocidad-banner.C23vuyub.webp",
+      "_app/immutable/assets/avila-multisports-coaches-carolina-lairet.D4C6OImQ.webp",
+      "_app/immutable/assets/avila-multisports-coaches-salvatore-cali.DPD1oOo9.webp",
+      "_app/immutable/assets/avila-multisports-coaches-federico-pisani.BNtlYtsV.webp"
+    ]
+  },
+  "src/routes/coaches/+page.ts": {
+    "file": "entries/pages/coaches/_page.ts.js",
+    "name": "entries/pages/coaches/_page.ts",
+    "src": "src/routes/coaches/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/contacto/+page.svelte": {
+    "file": "entries/pages/contacto/_page.svelte.js",
+    "name": "entries/pages/contacto/_page.svelte",
+    "src": "src/routes/contacto/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_store.js"
+    ]
+  },
+  "src/routes/contacto/+page.ts": {
+    "file": "entries/pages/contacto/_page.ts.js",
+    "name": "entries/pages/contacto/_page.ts",
+    "src": "src/routes/contacto/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/nosotros/+page.svelte": {
+    "file": "entries/pages/nosotros/_page.svelte.js",
+    "name": "entries/pages/nosotros/_page.svelte",
+    "src": "src/routes/nosotros/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_store.js"
+    ],
+    "assets": [
+      "_app/immutable/assets/avila-multisports-nosotros-grupo-ciclistas.Bsbmncjz.webp",
+      "_app/immutable/assets/avila-multisports-nosotros-ciclista-parado-pedaleando.CZA-A2Tf.webp",
+      "_app/immutable/assets/avila-multisports-nosotros-2-miembros-equipos-ciclismo.5q9nqvkG.webp"
+    ]
+  },
+  "src/routes/nosotros/+page.ts": {
+    "file": "entries/pages/nosotros/_page.ts.js",
+    "name": "entries/pages/nosotros/_page.ts",
+    "src": "src/routes/nosotros/+page.ts",
+    "isEntry": true
+  },
+  "src/routes/productos/+page.svelte": {
+    "file": "entries/pages/productos/_page.svelte.js",
+    "name": "entries/pages/productos/_page.svelte",
+    "src": "src/routes/productos/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_client.js",
+      "_store.js",
+      "_utils2.js"
+    ]
+  },
+  "src/routes/productos/+page.ts": {
+    "file": "entries/pages/productos/_page.ts.js",
+    "name": "entries/pages/productos/_page.ts",
+    "src": "src/routes/productos/+page.ts",
+    "isEntry": true,
+    "imports": [
+      "_query.js",
+      "_session.js"
+    ]
+  },
+  "src/routes/productos/[category]/+page.svelte": {
+    "file": "entries/pages/productos/_category_/_page.svelte.js",
+    "name": "entries/pages/productos/_category_/_page.svelte",
+    "src": "src/routes/productos/[category]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_client.js",
+      "_stores.js",
+      "_store.js",
+      "_utils2.js"
+    ]
+  },
+  "src/routes/productos/[category]/+page.ts": {
+    "file": "entries/pages/productos/_category_/_page.ts.js",
+    "name": "entries/pages/productos/_category_/_page.ts",
+    "src": "src/routes/productos/[category]/+page.ts",
+    "isEntry": true,
+    "imports": [
+      "_query.js",
+      "_session.js",
+      "_utils2.js"
+    ]
+  },
+  "src/routes/productos/[category]/[product]/+page.svelte": {
+    "file": "entries/pages/productos/_category_/_product_/_page.svelte.js",
+    "name": "entries/pages/productos/_category_/_product_/_page.svelte",
+    "src": "src/routes/productos/[category]/[product]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_utils.js",
+      "_ssr.js",
+      "_stores.js",
+      "_store.js",
+      "_utils2.js"
+    ]
+  },
+  "src/routes/productos/[category]/[product]/+page.ts": {
+    "file": "entries/pages/productos/_category_/_product_/_page.ts.js",
+    "name": "entries/pages/productos/_category_/_product_/_page.ts",
+    "src": "src/routes/productos/[category]/[product]/+page.ts",
+    "isEntry": true,
+    "imports": [
+      "_query.js",
+      "_session.js",
+      "_utils2.js"
+    ]
+  }
+}

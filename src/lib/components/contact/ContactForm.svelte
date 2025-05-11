@@ -170,6 +170,8 @@
 		return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}`;
 	}
 
+	// a
+
 	function enterAnimation() {
 		if (!browser) return;
 		timeline(
@@ -259,11 +261,11 @@
 	on:exit={exitAnimation}
 >
 	<div class="p-8 pt-24 bg-#003B49 h-94vh md:(pt-32 p-12) lg:pl-16">
-		<h3 class="mb-4 text-2xl text-#E3D268 md:text-4xl">Contáctanos</h3>
+		<h3 class="mb-2 text-2xl text-#E3D268 md:text-4xl">Contáctanos</h3>
 
 		<form
 			bind:this={formElement}
-			class="flex flex-col gap-4 md:(gap-4 mt-8)"
+			class="flex flex-col gap-4 md:(gap-4 mt-4)"
 			name="contact-form"
 			method="POST"
 			data-netlify="true"
@@ -352,18 +354,19 @@
 					on:input={(e) => validateMessage(e.currentTarget.value)}
 					aria-invalid={messageError ? 'true' : undefined}
 					aria-describedby={messageError ? 'message-error-msg' : undefined}
-				></textarea>
-				{#if messageError}
-					<p id="message-error-msg" class="text-red-500 text-sm mt-1">{messageError}</p>
-				{/if}
+				/>
 			</div>
 
+			{#if messageError}
+				<p id="message-error-msg" class="text-red-500 text-sm mt-1">{messageError}</p>
+			{/if}
+
 			{#if clientError}
-				<p class="text-red-500 p-2 bg-red-100 border border-red-400 rounded">{clientError}</p>
+				<p class="text-red-500 py-1 pl-2 bg-red-200 border border-red-400 rounded">{clientError}</p>
 			{/if}
 
 			{#if successMessage}
-				<p class="text-green-700 p-2 bg-green-100 border border-green-500 rounded">
+				<p class="text-green-700 py-1 pl-2 bg-green-200 border border-green-500 rounded">
 					{successMessage}
 				</p>
 			{/if}
