@@ -1,4 +1,6 @@
 <script lang="ts">
+	export const prerender = true;
+
 	import { onMount } from 'svelte';
 	import { elementColors } from '$lib/store';
 	import ContactForm from '$lib/components/contact/ContactForm.svelte';
