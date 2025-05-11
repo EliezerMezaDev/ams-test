@@ -265,9 +265,7 @@
 			bind:this={formElement}
 			class="flex flex-col gap-4 md:(gap-4 mt-8)"
 			name="contact-form"
-			action="/contacto/"
 			method="POST"
-			netlify
 			data-netlify="true"
 			data-netlify-honeypot="bot-field"
 			on:submit={handleSubmit}
