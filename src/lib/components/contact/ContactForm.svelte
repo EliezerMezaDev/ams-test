@@ -5,9 +5,8 @@
 	import { browser } from '$app/environment';
 
 	let sending = false;
-	let error = '';
-	let success = '';
-	const EMAIL_TARGET = 'lsandoval@novanet.studio';
+	let clientError = '';
+	const EMAIL_TARGET = 'info@avilamultisport.com';
 
 	let nameError = '';
 	let lastnameError = '';
@@ -78,7 +77,7 @@
 			return false;
 		}
 		if (!MESSAGE_REGEX.test(value)) {
-			messageError = 'El mensaje solo puede contener caracteres regulares';
+			messageError = 'El mensaje solo puede contener caracteres regulares (máx 256 caracteres)';
 			return false;
 		}
 		messageError = '';
@@ -103,7 +102,6 @@
 
 	function isMobileDevice() {
 		if (!browser) return false;
-
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 			navigator.userAgent
 		);
@@ -111,58 +109,29 @@
 
 	function getEmailLink() {
 		const subject = encodeURIComponent('CONTACTO DESDE FORMULARIO - AVILA MULTISPORT');
-
 		if (isMobileDevice()) {
 			return `mailto:${EMAIL_TARGET}?subject=${subject}`;
 		}
-
 		return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}`;
 	}
 
-	function sendForm(_event: Event) {
-		_event.preventDefault();
-		error = '';
+	function handleSubmit(event: Event) {
+		clientError = '';
+		sending = true;
 
-		try {
-			const formData = new FormData(_event.target as HTMLFormElement);
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
 
-			if (!validateForm(formData)) {
-				return;
-			}
-
-			const formObject = Object.fromEntries(formData);
-
-			const emailBody = `Nombre: ${formObject.name}
-								Apellido: ${formObject.lastname}
-								Teléfono: ${formObject.phone}
-								Email: ${formObject.email}
-
-								Mensaje:
-								${formObject.message}
-			`;
-
-			console.log(`emailBody ${emailBody}`);
-
-			const subject = encodeURIComponent('CONTACTO DESDE FORMULARIO - AVILA MULTISPORT');
-			const body = encodeURIComponent(emailBody);
-
-			if (isMobileDevice()) {
-				const mailtoLink = `mailto:${EMAIL_TARGET}?subject=${subject}&body=${body}`;
-				window.location.href = mailtoLink;
-			} else {
-				const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}&body=${body}`;
-				window.open(gmailLink, '_blank');
-			}
-		} catch (e) {
-			error = 'Error al procesar el formulario';
-		} finally {
-			setTimeout(() => {
-				//(_event.target as HTMLFormElement).reset();
-			}, 1000);
+		if (!validateForm(formData)) {
+			event.preventDefault();
+			clientError = 'Por favor, corrige los errores en el formulario.';
+			sending = false;
+			return;
 		}
 	}
 
 	function enterAnimation() {
+		if (!browser) return;
 		timeline(
 			[
 				[
@@ -233,6 +202,7 @@
 	}
 
 	function exitAnimation() {
+		if (!browser) return;
 		animate(
 			'#contact',
 			{ opacity: [1, 0] },
@@ -250,8 +220,24 @@
 >
 	<div class="p-8 pt-24 bg-#003B49 h-94vh md:(pt-32 p-12) lg:pl-16">
 		<h3 class="mb-4 text-2xl text-#E3D268 md:text-4xl">Contáctanos</h3>
-		<form class="flex flex-col gap-4 md:(gap-4 mt-8)" name="contact-form" on:submit={sendForm}>
+
+		<form
+			class="flex flex-col gap-4 md:(gap-4 mt-8)"
+			name="contact-form"
+			method="POST"
+			data-netlify="true"
+			data-netlify-honeypot="bot-field"
+			on:submit={handleSubmit}
+			action="/thank-you/"
+		>
 			<input type="hidden" name="form-name" value="contact-form" />
+
+			<p class="hidden">
+				<label>
+					No llenar si eres humano: <input name="bot-field" />
+				</label>
+			</p>
+
 			<div class="flex flex-col gap-4 lg:(flex-row)">
 				<div class="w-full">
 					<input
@@ -261,9 +247,11 @@
 						name="name"
 						placeholder="Nombre"
 						on:input={(e) => validateName(e.currentTarget.value)}
+						aria-invalid={nameError ? 'true' : undefined}
+						aria-describedby={nameError ? 'name-error-msg' : undefined}
 					/>
 					{#if nameError}
-						<p class="text-red-500 text-sm mt-1">{nameError}</p>
+						<p id="name-error-msg" class="text-red-500 text-sm mt-1">{nameError}</p>
 					{/if}
 				</div>
 				<div class="w-full">
@@ -274,23 +262,28 @@
 						name="lastname"
 						placeholder="Apellido"
 						on:input={(e) => validateLastname(e.currentTarget.value)}
+						aria-invalid={lastnameError ? 'true' : undefined}
+						aria-describedby={lastnameError ? 'lastname-error-msg' : undefined}
 					/>
 					{#if lastnameError}
-						<p class="text-red-500 text-sm mt-1">{lastnameError}</p>
+						<p id="lastname-error-msg" class="text-red-500 text-sm mt-1">{lastnameError}</p>
 					{/if}
 				</div>
 			</div>
 			<div class="flex flex-col gap-4 lg:(flex-row)">
 				<div class="w-full">
 					<input
+						required
 						class="w-full"
 						type="email"
 						name="email"
 						placeholder="Email"
 						on:input={(e) => validateEmail(e.currentTarget.value)}
+						aria-invalid={emailError ? 'true' : undefined}
+						aria-describedby={emailError ? 'email-error-msg' : undefined}
 					/>
 					{#if emailError}
-						<p class="text-red-500 text-sm mt-1">{emailError}</p>
+						<p id="email-error-msg" class="text-red-500 text-sm mt-1">{emailError}</p>
 					{/if}
 				</div>
 				<div class="w-full">
@@ -301,9 +294,11 @@
 						name="phone"
 						placeholder="Teléfono"
 						on:input={(e) => validatePhone(e.currentTarget.value)}
+						aria-invalid={phoneError ? 'true' : undefined}
+						aria-describedby={phoneError ? 'phone-error-msg' : undefined}
 					/>
 					{#if phoneError}
-						<p class="text-red-500 text-sm mt-1">{phoneError}</p>
+						<p id="phone-error-msg" class="text-red-500 text-sm mt-1">{phoneError}</p>
 					{/if}
 				</div>
 			</div>
@@ -315,18 +310,23 @@
 					rows="4"
 					placeholder="Mensaje"
 					on:input={(e) => validateMessage(e.currentTarget.value)}
+					aria-invalid={messageError ? 'true' : undefined}
+					aria-describedby={messageError ? 'message-error-msg' : undefined}
 				></textarea>
 				{#if messageError}
-					<p class="text-red-500 text-sm mt-1">{messageError}</p>
+					<p id="message-error-msg" class="text-red-500 text-sm mt-1">{messageError}</p>
 				{/if}
 			</div>
-			{#if error}
-				<p class="text-red-500">{error}</p>
+
+			{#if clientError}
+				<p class="text-red-500">{clientError}</p>
 			{/if}
-			{#if success}
-				<p class="text-green-500">{success}</p>
-			{/if}
-			<button class="self-start bg-#ACC37E py-2 px-12 rounded-full" disabled={sending}>
+
+			<button
+				aria-label="Enviar mensaje"
+				class="self-start bg-#ACC37E py-2 px-12 rounded-full"
+				disabled={sending}
+			>
 				{sending ? 'Enviando...' : 'Enviar'}
 			</button>
 		</form>

@@ -61,7 +61,7 @@ export const carousel = {
 			name: 'Inspire logo',
 			copy: {
 				main: 'Inspirados para ofrecer los mejores productos',
-				secondary: 'Otra gran descripcion aca'
+				secondary: 'Equipos de ejercicio de alta calidad'
 			},
 			logo: inspireLogo,
 			image: inspireImage

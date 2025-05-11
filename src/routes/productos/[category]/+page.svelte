@@ -102,7 +102,7 @@
 				class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-#93B7BB/50 gap-2 z-2"
 			>
 				<h4 id="name" class="text-#003B49 font-bold text-lg md:text-3xl lg:text-4xl">
-					{category?.attributes?.name}
+					{category?.attributes?.name ?? categoryName}
 				</h4>
 			</div>
 			<img
