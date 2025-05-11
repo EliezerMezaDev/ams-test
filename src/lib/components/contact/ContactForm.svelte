@@ -1,6 +1,4 @@
 <script lang="ts">
-	export const prerender = true;
-
 	import inView from '$lib/actions/inView';
 	import { isDesktop } from '$lib/store';
 	import { animate, stagger, timeline } from 'motion';
