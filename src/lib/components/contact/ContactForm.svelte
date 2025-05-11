@@ -6,7 +6,10 @@
 
 	let sending = false;
 	let clientError = '';
+	let successMessage = '';
 	const EMAIL_TARGET = 'info@avilamultisport.com';
+
+	let formElement: HTMLFormElement;
 
 	let nameError = '';
 	let lastnameError = '';
@@ -84,7 +87,7 @@
 		return true;
 	}
 
-	function validateForm(formData: FormData): boolean {
+	function validateAllFields(formData: FormData): boolean {
 		const name = formData.get('name') as string;
 		const lastname = formData.get('lastname') as string;
 		const email = formData.get('email') as string;
@@ -100,6 +103,54 @@
 		return isNameValid && isLastnameValid && isEmailValid && isPhoneValid && isMessageValid;
 	}
 
+	function clearFormErrors() {
+		nameError = '';
+		lastnameError = '';
+		emailError = '';
+		phoneError = '';
+		messageError = '';
+		clientError = '';
+	}
+
+	async function handleSubmit(event: Event) {
+		event.preventDefault();
+
+		sending = true;
+		clientError = '';
+		successMessage = '';
+
+		const formData = new FormData(formElement);
+
+		if (!validateAllFields(formData)) {
+			clientError = 'Por favor, corrige los errores en el formulario.';
+			sending = false;
+			return;
+		}
+
+		try {
+			const response = await fetch(formElement.action, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: new URLSearchParams(formData as any).toString()
+			});
+
+			if (response.ok) {
+				successMessage = '¡Formulario enviado con éxito! Gracias por contactarnos.';
+				if (formElement) formElement.reset();
+				clearFormErrors();
+			} else {
+				const errorData = await response.text();
+				console.error('Error de Netlify:', errorData);
+				clientError = `Error al enviar el formulario (${response.status}). Inténtalo de nuevo.`;
+			}
+		} catch (error) {
+			console.error('Error en la petición fetch:', error);
+			clientError = 'Hubo un problema al conectar con el servidor. Por favor, inténtalo más tarde.';
+		} finally {
+			sending = false;
+		}
+	}
+
 	function isMobileDevice() {
 		if (!browser) return false;
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -113,21 +164,6 @@
 			return `mailto:${EMAIL_TARGET}?subject=${subject}`;
 		}
 		return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}`;
-	}
-
-	function handleSubmit(event: Event) {
-		clientError = '';
-		sending = true;
-
-		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
-
-		if (!validateForm(formData)) {
-			event.preventDefault();
-			clientError = 'Por favor, corrige los errores en el formulario.';
-			sending = false;
-			return;
-		}
 	}
 
 	function enterAnimation() {
@@ -222,13 +258,13 @@
 		<h3 class="mb-4 text-2xl text-#E3D268 md:text-4xl">Contáctanos</h3>
 
 		<form
+			bind:this={formElement}
 			class="flex flex-col gap-4 md:(gap-4 mt-8)"
 			name="contact-form"
 			method="POST"
 			data-netlify="true"
 			data-netlify-honeypot="bot-field"
 			on:submit={handleSubmit}
-			action="/thank-you/"
 		>
 			<input type="hidden" name="form-name" value="contact-form" />
 
@@ -319,14 +355,16 @@
 			</div>
 
 			{#if clientError}
-				<p class="text-red-500">{clientError}</p>
+				<p class="text-red-500 p-2 bg-red-100 border border-red-400 rounded">{clientError}</p>
 			{/if}
 
-			<button
-				aria-label="Enviar mensaje"
-				class="self-start bg-#ACC37E py-2 px-12 rounded-full"
-				disabled={sending}
-			>
+			{#if successMessage}
+				<p class="text-green-700 p-2 bg-green-100 border border-green-500 rounded">
+					{successMessage}
+				</p>
+			{/if}
+
+			<button class="self-start bg-#ACC37E py-2 px-12 rounded-full" disabled={sending}>
 				{sending ? 'Enviando...' : 'Enviar'}
 			</button>
 		</form>
