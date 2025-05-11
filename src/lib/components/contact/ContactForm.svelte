@@ -170,7 +170,6 @@
 		return `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_TARGET}&su=${subject}`;
 	}
 
-	/*
 	function enterAnimation() {
 		if (!browser) return;
 		timeline(
@@ -250,16 +249,15 @@
 			{ duration: 0.5, delay: 0.5, easing: [0.17, 0.55, 0.55, 1] }
 		);
 	}
-	*/
 </script>
 
 <section
 	id="contact"
 	class="w-full h-screen snap-start relative"
 	use:inView={{ bottom: 100, top: 100 }}
+	on:enter={enterAnimation}
+	on:exit={exitAnimation}
 >
-	<!-- on:enter={enterAnimation} 
-	 on:exit={exitAnimation} -->
 	<div class="p-8 pt-24 bg-#003B49 h-94vh md:(pt-32 p-12) lg:pl-16">
 		<h3 class="mb-4 text-2xl text-#E3D268 md:text-4xl">Contáctanos</h3>
 
