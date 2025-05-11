@@ -1,7 +1,7 @@
 <script lang="ts">
 	import 'virtual:uno.css';
 	import '@unocss/reset/tailwind.css';
-	import Header from '$lib/components/header/Header.svelte';
+	//	import Header from '$lib/components/header/Header.svelte';
 	import Footer from '$lib/components/footer/Footer.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	import { scrollY } from '$lib/store';
@@ -16,7 +16,7 @@
 <!-- overflow-y-scroll snap-y snap-mandatory -->
 
 <div class="font-primary">
-	<Header />
+	<!-- <Header /> -->
 	<Sidebar />
 	<main class="h-screen overflow-y-scroll snap-y snap-mandatory">
 		<slot />
