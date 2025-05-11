@@ -261,6 +261,7 @@
 			bind:this={formElement}
 			class="flex flex-col gap-4 md:(gap-4 mt-8)"
 			name="contact-form"
+			action="/contacto/"
 			method="POST"
 			data-netlify="true"
 			data-netlify-honeypot="bot-field"
@@ -341,7 +342,7 @@
 			<div class="w-full">
 				<textarea
 					required
-					class="w-full pt-3 pl-3"
+					class="w-full pt-3 pl-3 resize-none"
 					name="message"
 					rows="4"
 					placeholder="Mensaje"
