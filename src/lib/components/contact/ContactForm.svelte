@@ -269,6 +269,7 @@
 			name="contact-form"
 			action="/contacto/"
 			method="POST"
+			netlify
 			data-netlify="true"
 			data-netlify-honeypot="bot-field"
 			on:submit={handleSubmit}
